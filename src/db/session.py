@@ -1,3 +1,5 @@
+from typing import Generator
+
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
@@ -15,4 +17,12 @@ except Exception as e:
     print("Database cannot be up !",e)
 
 
+
 SessionLocal = sessionmaker(bind=engine)
+
+def get_db() -> Generator:   #new
+    try:
+        db = SessionLocal()
+        yield db
+    finally:
+        db.close()
