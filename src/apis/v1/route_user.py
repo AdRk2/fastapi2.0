@@ -2,7 +2,7 @@ from fastapi import Depends, APIRouter
 from sqlalchemy.orm import Session
 from starlette import status
 
-from db.repository.user import create_new_user
+from db.services.user import create_new_user
 from db.schemas.user import UserCreate, ShowUser
 from db.session import get_db
 
