@@ -13,8 +13,6 @@ def create_new_blog(blog:CreateBlog,db:Session,author_id:int = 1):
     slug = blog.slug,
     content = blog.content,
     author_id = author_id,
-    #author = blog.author,
-    created_at = datetime.now(),
     is_active = True)
 
 
@@ -22,3 +20,11 @@ def create_new_blog(blog:CreateBlog,db:Session,author_id:int = 1):
     db.commit()
     db.refresh(blog)
     return blog
+
+def retrieve_blog(id: int, db: Session):
+    blog = db.query(Blog).filter(Blog.id == id).first()
+    return blog
+
+def list_blogs(db: Session):
+    blogs = db.query(Blog).filter(Blog.is_active == True).all()
+    return blogs
