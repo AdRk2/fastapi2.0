@@ -1,4 +1,6 @@
 from fastapi import FastAPI
+
+from apis.base import api_router
 from core.config import settings
 from db.session import engine
 from db.base import Base
@@ -10,11 +12,14 @@ def create_tables():
 def delete_tables():
     Base.metadata.drop_all(bind=engine)
 
+def include_router(app):
+    app.include_router(api_router)
 
 def start_application():
     app = FastAPI(title=settings.PROJECT_NAME, version=settings.PROJECT_VERSION)
-    delete_tables()
+    #delete_tables() just to clean projects
     create_tables()
+    include_router(app)
     return app
 
 
