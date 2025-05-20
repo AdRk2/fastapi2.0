@@ -1,0 +1,9 @@
+{
+  "version": "1",
+  "name": "fast_api_gui_test",
+  "type": "collection",
+  "ignore": [
+    "node_modules",
+    ".git"
+  ]
+}

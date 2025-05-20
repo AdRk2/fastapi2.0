@@ -11,10 +11,11 @@ from db.session import get_db
 
 router = APIRouter()
 
+#display CRUD ROUTES
 @router.post("/blogs",response_model=ShowBlog,status_code = status.HTTP_201_CREATED)
 
 def create_blog(blog:CreateBlog,db : Session = Depends(get_db)):
-    blog = create_new_blog(blog=blog,db=db,author_id = blog.author_id) ##fix the value dynamically
+    blog = create_new_blog(blog=blog,db=db,author_id = 2) ##fix the value dynamically
     return blog
 
 @router.get("/blogs/{id}",response_model=ShowBlog)
@@ -39,7 +40,7 @@ def update_a_blog(id:int,blog:CreateBlog,db:Session = Depends(get_db)):
         )
     return blog
 
-@router.delete("/delete/{id}")
+@router.delete("/blogs/{id}")
 def delete_a_blog(id:int,db:Session = Depends(get_db)):
     message = delete_blog(id=id,db=db)
     if message.get("error"):

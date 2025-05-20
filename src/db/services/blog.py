@@ -5,7 +5,7 @@ from sqlalchemy.orm import Session
 from ..models.blog import Blog
 from ..schemas.blog import CreateBlog, UpdateBlog
 
-#CRUF LOGICS
+#CRUD LOGICS
 def create_new_blog(blog:CreateBlog,db:Session,author_id:int = 1):
     blog = Blog(
     id=author_id,
