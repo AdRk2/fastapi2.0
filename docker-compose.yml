@@ -1,0 +1,47 @@
+networks:
+  stg:
+services:
+  db:
+    image: postgres:latest
+    container_name: postgres_db
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: stg
+      POSTGRES_PASSWORD : adam
+      POSTGRES_DB: blogdb
+      volumes:
+        -./docker/init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - stg
+
+  pg_admin:
+      image: dpage/pgadmin4:latest
+      container_name: pgadmin4
+      ports:
+        - "5000:80"
+      environment:
+        PGADMIN_DEFAULT_EMAIL : adam@adam.com
+        PGADMIN_DEFAULT_PASSWORD: adam
+      depends_on:
+        - db
+      networks:
+        - stg
+
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: fastapi_app
+    restart: always
+    ports:
+      - "8000:8000"
+    environment:
+      DATABASE_URL: "postgresql://stg:adam@db:5432/blogdb"
+    depends_on:
+      - db
+    networks:
+      - stg
+
+

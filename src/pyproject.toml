@@ -5,7 +5,6 @@ description = ""
 authors = [
     {name = "AdRk2",email = "ar-adam.abed@rakuten.com"}
 ]
-readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
     "fastapi (>=0.115.12,<0.116.0)",
@@ -18,8 +17,18 @@ dependencies = [
     "httpx (>=0.28.1,<0.29.0)",
     "pre-commit (>=4.2.0,<5.0.0)",
     "pytest-cov (>=6.1.1,<7.0.0)",
+    "python-jose (>=3.4.0,<4.0.0)",
+    "python-multipart (>=0.0.20,<0.0.21)",
+    "sqlalchemy (>=2.0.41,<3.0.0)",
+    "dotenv (>=0.9.9,<0.10.0)",
+    "alembic (>=1.15.2,<2.0.0)",
+    "router (>=0.1,<0.2)",
+    "schemas (>=0.7.1,<0.8.0)",
 ]
 
+[tool.poetry]
+name = "fastapi2"
+package-mode = false
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]

@@ -1,7 +1,7 @@
 __pycache__
-.env
+../.env
 env
-test_db.db
+../test_db.db
 *.bru
 .venv
 node_modules/
