@@ -17,7 +17,8 @@ services:
       - stg
 
   pg_admin:
-      image: dpage/pgadmin4:latest
+      platform: linux/amd64
+      image: dpage/pgadmin4:9
       container_name: pgadmin4
       ports:
         - "5000:80"
@@ -30,6 +31,7 @@ services:
         - stg
 
   api:
+    platform: linux/amd64
     build:
       context: .
       dockerfile: Dockerfile
