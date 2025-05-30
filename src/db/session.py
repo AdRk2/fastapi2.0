@@ -3,6 +3,7 @@ from typing import Generator
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
+##docker environnment base
 #SQLALCHEMY_DATABASE_URL ="postgresql://stg:adam@db:5432/blogdb"
 
 SQLALCHEMY_DATABASE_URL = "postgresql://devadmin:ijustwanttolog2%40@d:5432/postgres"

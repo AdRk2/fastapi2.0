@@ -2,14 +2,19 @@
 
 ## Prerequisites
 
-*   **Docker:**  Ensure you have Docker installed and running on your system.
+*   **Docker:**  Ensure you have Docker installed and running on your system and the deamon is active
 *   **Azure CLI (Optional):**  If you're pushing to Azure Container Registry (ACR), ensure you have the Azure CLI installed and are logged in to your Azure account.  (`az login`)
 *   **Azure Container Registry (ACR):**  You need an existing Azure Container Registry to push your images to.  Place `registryexp.azurecr.io` as actual ACR name.
+
+Make sure to login to azure registry to push to it
+
+```bash 
+az acr login --name registryexp
+```
 
 ## Building and Pushing images (AMD64)
 
 Since `pgadmin` already has been specified in the docker-compose.yml file simply type for having amd64 images only
-
 
 ### 1. Pull the pgAdmin Image
 
@@ -26,14 +31,11 @@ docker push registryexp.azurecr.io/pgadmin:v5 --platform linux/amd64
 
 ### 2. private Backend imabge built pushed and pushed in the azure container registry the latest version possible (v5)
 
-``` bash 
-
+```bash 
 docker build . --platform linux/amd64 --pull --tag registryexp.azurecr.io/fastapi:v5
 
 docker push registryexp.azurecr.io/fastapi:v5 --platform linux/amd64
 ```
-
-
 
 
 
